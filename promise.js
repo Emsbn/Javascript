@@ -1,17 +1,8 @@
-const p1 = new Promise(resolve => {
-  setTimeout(resolve, 5000, "First");
-});
+const p1 = new Promise((resolve, reject) => {
+  // setTimeout(resolve, 1000, "First");
+  setTimeout(reject, 1000, "First");
 
-const p2 = new Promise((resolve, reject) => {
-  setTimeout(reject, 1000, "Second");
-});
-
-const p3 = new Promise(resolve => {
-  setTimeout(resolve, 3000, "Third");
-});
-
-const motherPromise = Promise.all([p1, p2, p3]);
-
-motherPromise
-  .then(values => console.log(values))
-  .catch(err => console.log(err));
+})
+  .then((value) => console.log(value))
+  .catch(err => console.log(err))
+  .finally(() => console.log("Im done"));
