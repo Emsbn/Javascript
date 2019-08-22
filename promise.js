@@ -1,25 +1,17 @@
-const amISexy = new Promise((resolve, reject) => {
-  // setTimeout(resolve, 3000, 'Yes you are');
-  // resolve("Yes you are!");
-  // setTimeout(reject, 3000, 'You are resject!');
-  // reject("Yes you are!");
-
-  resolve(2);
-  // reject(2);
+const p1 = new Promise(resolve => {
+  setTimeout(resolve, 5000, "First");
 });
 
-// amISexy
-//   .then(result => console.log(result))
-//   .catch(error => console.log(error));
+const p2 = new Promise((resolve, reject) => {
+  setTimeout(reject, 1000, "Second");
+});
 
-amISexy
-  .then(number => number * 2)
-  .then(number => number * 2)
-  .then(number => number * 2)
-  .then(number => number * 2)
-  .then(() => {
-    throw Error('what the ...')
-  })
-  .then(lastNum => console.log(lastNum))
-  .then()
-  .catch(error => console.log(error));
+const p3 = new Promise(resolve => {
+  setTimeout(resolve, 3000, "Third");
+});
+
+const motherPromise = Promise.all([p1, p2, p3]);
+
+motherPromise
+  .then(values => console.log(values))
+  .catch(err => console.log(err));
